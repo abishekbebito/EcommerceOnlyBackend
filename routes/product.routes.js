@@ -1,0 +1,11 @@
+let express = require("express");
+let router = express.Router();
+let controller = require("./../controller/product.controller");
+let authJwt = require("./../middlewares/authJwt");
+router.get("/", [authJwt.verifyToken], controller.getAllProducts);
+router.get("/:productId", controller.getProductsById);
+router.post("/", controller.addNewProduct);
+router.post("/", controller.insertProducts);
+router.delete("/:productId", controller.deleteProductById);
+router.put("/:productId", controller.updateProductById);
+module.exports = router;
